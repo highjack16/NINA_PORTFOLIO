@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOURDES - Web Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #333;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 35px;
+            height: 35px;
+            background: #a3e635;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #a3e635;
+        }
+
+        .cta-btn {
+            background: #a3e635;
+            color: #000;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: #bef264;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #a3e635;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, #57f93b 0%, #27f62b 100%);
+            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+            z-index: 1;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            color: #fff;
+        }
+
+        .hero-greeting {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #999;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .hero-name {
+            color: #a3e635;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #ccc;
+        }
+
+        .hero-btn {
+            background: transparent;
+            color: #a3e635;
+            border: 2px solid #a3e635;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .hero-btn:hover {
+            background: #a3e635;
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .image-circle {
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            border: 8px solid #a3e635;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(245, 158, 11, 0.3);
+        }
+
+        .image-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-placeholder {
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: #252525;
+            justify-content: center;
+            align-items: center;
+        }
+        .about-section {
+            padding: 6rem 2rem;
+            background: #0a0a0a;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image-frame {
+            position: relative;
+            border: 4px solid #a3e635;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
+        }
+
+        .about-image-frame img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-placeholder {
+            display: none;
+            width: 100%;
+            height: 400px;
+            background: #1a1a1a;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-content {
+            color: #fff;
+        }
+
+        .about-title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .about-underline {
+            width: 80px;
+            height: 4px;
+            background: #a3e635;
+            margin-bottom: 2rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #999;
+        }
+        .scrolling-banner {
+            background: #a3e635;
+            color: #000;
+            padding: 1rem 0;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+
+        .scroll-content {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .scroll-item {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 0 2rem;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            color: #a3e635;
+            border: 2px solid #a3e635;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .highlight {
+            color: #a3e635;
+        }
+        .services {
+            padding: 5rem 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #1a1a1a;
+            border-left: 4px solid #a3e635;
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            background: #252525;
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: #252525;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a3e635;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            background: #a3e635;
+            color: #000;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #999;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-link {
+            color: #a3e635;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s;
+        }
+
+        .service-link:hover {
+            gap: 1rem;
+        }
+        .cta-section {
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .skills-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .skill-tag {
+            background: #a3e635;
+            color: #000;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .skill-tag:hover {
+            transform: rotate(3deg) scale(1.05);
+        }
+        .faqs {
+            padding: 5rem 0;
+        }
+
+        .faq-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+        }
+
+        .faq-tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-tab {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .faq-tab.active {
+            background: #a3e635;
+            color: #000;
+        }
+
+        .faq-questions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #fff;
+            padding: 1.5rem;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #252525;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 1.5rem 1.5rem;
+            background: #a3e635;
+            color: #000;
+        }
+
+        .faq-icon {
+            color: #a3e635;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        footer {
+            border-top: 1px solid #333;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: #999;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: #252525;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #a3e635;
+            color: #000;
+        }
+
+        .footer-section h4 {
+            color: #a3e635;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #a3e635;
+        }
+
+        .newsletter {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter input {
+            flex: 1;
+            background: #252525;
+            border: none;
+            color: #fff;
+            padding: 0.7rem 1rem;
+            border-radius: 8px;
+        }
+
+        .newsletter button {
+            background: #a3e635;
+            border: none;
+            color: #000;
+            padding: 0.7rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #999;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero::before {
+                width: 100%;
+                height: 40%;
+                clip-path: none;
+                top: auto;
+                bottom: 0;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .image-circle {
+                width: 300px;
+                height: 300px;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-image-frame {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .about-underline {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: #000;
+                flex-direction: column;
+                padding: 2rem;
+                border-top: 1px solid #333;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .faq-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">O</div>
+                <span>Nina.</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blogs">Blogs</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button class="cta-btn">Let's Talk</button></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div>
+    </nav>
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <p class="hero-greeting">Hello</p>
+                <h1 class="hero-title">I'm <span class="hero-name">Nina</span></h1>
+                <p class="hero-subtitle">A Filipino Student<br>Passionate about<br>Web Development</p>
+                <button class="hero-btn">Hire Me</button>
+            </div>
+            <div class="hero-image">
+                <div class="image-circle">
+                    <img src="images/8535ef46d879a51464f1adeb6c612a58.jpg" alt="Nina" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="image-placeholder">
+                        <span style="font-size: 5rem;">👤</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-image">
+                <div class="about-image-frame">
+                    <img src="images/91142def68621432ecd9b9e9b4f77482.jpg" alt="About Me" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="about-placeholder">
+                        <span style="font-size: 4rem;">📸</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-content">
+                <h2 class="about-title">About Me</h2>
+                <div class="about-underline"></div>
+                <p class="about-text">
+                    I am a young developer who once dreamed of becoming a great programmer and entrepreneur, 
+                    but I know that God's ordained destiny is the best. I am passionate about web development, 
+                    design, and creating amazing digital experiences. I am the first child, and I have a life 
+                    motto that whoever knows the distance of a journey, he should be prepared. Try it while 
+                    learning, then you will know something amazing.
+                </p>
+            </div>
+        </div>
+    </section>
+    <div class="scrolling-banner">
+        <div class="scroll-content">
+            <span class="scroll-item">Web Design ✦</span>
+            <span class="scroll-item">App Design ✦</span>
+            <span class="scroll-item">Dashboard ✦</span>
+            <span class="scroll-item">Wireframe ✦</span>
+            <span class="scroll-item">UI/UX Design ✦</span>
+            <span class="scroll-item">Landing Page ✦</span>
+            <span class="scroll-item">Product Design ✦</span>
+            <span class="scroll-item">Brand Identity ✦</span>
+            <span class="scroll-item">Web Design ✦</span>
+            <span class="scroll-item">App Design ✦</span>
+            <span class="scroll-item">Dashboard ✦</span>
+            <span class="scroll-item">Wireframe ✦</span>
+        </div>
+    </div>
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">My Specialization</div>
+                <h2 class="section-title"><span class="highlight">Services</span> I Provide</h2>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>UI/UX Design</h3>
+                    <p>Creating intuitive and engaging user interfaces with seamless user experiences that delight your customers.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Application Design</h3>
+                    <p>Developing responsive mobile and web applications with modern frameworks and cutting-edge technologies.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Website Design</h3>
+                    <p>Building beautiful, fast, and SEO-optimized websites that convert visitors into customers.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>UI Design</h3>
+                    <p>Crafting pixel-perfect user interfaces with attention to detail and modern design principles.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Design System</h3>
+                    <p>Creating comprehensive design systems that ensure consistency across all your digital products.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📐</div>
+                    <h3>Wireframing</h3>
+                    <p>Planning and prototyping user flows and interfaces before development begins.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>Brand Identity</h3>
+                    <p>Developing cohesive brand identities that resonate with your target audience.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">✏️</div>
+                    <h3>Illustration</h3>
+                    <p>Creating custom illustrations and graphics that bring your brand to life.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Web App Design</h3>
+                    <p>Designing complex web applications with intuitive navigation and powerful features.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="cta-section">
+        <div class="container">
+            <h2>Let's Create an <span class="highlight">Amazing</span><br><span class="highlight">Project Together!</span></h2>
+            <button class="cta-btn" style="padding: 1rem 2rem; font-size: 1.1rem;">Contact Us</button>
+            <div class="skills-cloud">
+                <span class="skill-tag">Web Design</span>
+                <span class="skill-tag">App Design</span>
+                <span class="skill-tag">Dashboard</span>
+                <span class="skill-tag">Wireframe</span>
+                <span class="skill-tag">UI/UX Design</span>
+                <span class="skill-tag">Landing Page</span>
+                <span class="skill-tag">Product Design</span>
+                <span class="skill-tag">Brand Identity</span>
+            </div>
+        </div>
+    </section>
+    <div class="scrolling-banner">
+        <div class="scroll-content">
+            <span class="scroll-item">Web Design ✦</span>
+            <span class="scroll-item">App Design ✦</span>
+            <span class="scroll-item">Dashboard ✦</span>
+            <span class="scroll-item">Wireframe ✦</span>
+            <span class="scroll-item">UI/UX Design ✦</span>
+            <span class="scroll-item">Landing Page ✦</span>
+            <span class="scroll-item">Product Design ✦</span>
+            <span class="scroll-item">Brand Identity ✦</span>
+            <span class="scroll-item">Web Design ✦</span>
+            <span class="scroll-item">App Design ✦</span>
+            <span class="scroll-item">Dashboard ✦</span>
+            <span class="scroll-item">Wireframe ✦</span>
+        </div>
+    </div>
+    <section id="faqs" class="faqs">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">FAQs</div>
+                <h2 class="section-title">Questions? <span class="highlight">Look here.</span></h2>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-tabs">
+                    <button class="faq-tab active" data-tab="general">General</button>
+                    <button class="faq-tab" data-tab="services">Services</button>
+                    <button class="faq-tab" data-tab="delivery">Delivery</button>
+                    <button class="faq-tab" data-tab="payment">Payment</button>
+                </div>
+
+                <div class="faq-questions">
+                    <div class="faq-item" data-category="general">
+                        <button class="faq-question">
+                            What services do you offer as a web developer?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                I offer comprehensive web development services including custom website design and development, responsive mobile-friendly sites, e-commerce solutions, landing pages, portfolio websites, and website maintenance. I also provide UI/UX design, logo design, and branding services.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item active" data-category="general">
+                        <button class="faq-question">
+                            What industries do you specialize in?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer active">
+                            <div class="faq-answer-content">
+                                I work across various industries including local businesses in the Philippines, online shops, startups, restaurants, personal brands, and service providers. My adaptable approach allows me to deliver exceptional results regardless of the industry.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="general">
+                        <button class="faq-question">
+                            Do you work with clients outside the Philippines?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Yes! I work with clients globally. I'm available for online meetings and can accommodate different time zones. Communication is done via email, messaging apps, or video calls.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-category="services">
+                        <button class="faq-question">
+                            What does your web development service include?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                My service includes initial consultation, custom design mockups, responsive development (mobile, tablet, desktop), content integration, SEO optimization, contact forms, social media integration, and basic training on how to update your site. Free revisions are included during the development phase.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="services">
+                        <button class="faq-question">
+                            How long does it take to build a website?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Simple landing page or portfolio: 3-5 days. Business website (5-10 pages): 1-2 weeks. E-commerce or complex website: 2-4 weeks. Timeline depends on project complexity and how quickly you provide content and feedback.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="services">
+                        <button class="faq-question">
+                            Do you provide website hosting and domain?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                I can help you set up hosting and domain registration. I recommend affordable options suitable for Filipino businesses. Hosting typically costs ₱200-₱500/month depending on your needs. I can also deploy your site for free on platforms like Vercel or Netlify.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="services">
+                        <button class="faq-question">
+                            What if I need changes after the website is live?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                I offer ongoing support and maintenance packages. Minor updates and bug fixes within 30 days are free. For regular updates, I offer monthly maintenance plans starting at ₱1,500/month. One-time updates can also be arranged.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-category="delivery">
+                        <button class="faq-question">
+                            What is your development process?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                1) Consultation & Planning - Discuss your needs and goals. 2) Design Mockup - Create visual design for approval. 3) Development - Build the website. 4) Review & Revisions - Make adjustments based on feedback. 5) Launch - Deploy your site live. 6) Training - Show you how to manage basic updates.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="delivery">
+                        <button class="faq-question">
+                            How will I receive updates on my project?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                I provide regular updates via your preferred communication channel (Facebook Messenger, Viber, WhatsApp, Email, or Telegram). You'll receive progress screenshots and can view the development site at any time. I'm responsive and typically reply within a few hours during business days.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="delivery">
+                        <button class="faq-question">
+                            Can I request revisions?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Yes! I include 2-3 rounds of revisions during the development phase. Additional revisions can be arranged. I want you to be completely satisfied with the final result.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="delivery">
+                        <button class="faq-question">
+                            Will my website be mobile-friendly?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Absolutely! All websites I build are fully responsive and optimized for mobile phones, tablets, and desktop computers. With most Filipinos browsing on mobile, this is a top priority.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-category="payment">
+                        <button class="faq-question">
+                            What are your payment options?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                I accept GCash, bank transfer (BPI, BDO, UnionBank, or any Philippine bank), PayMaya, and PayPal for international clients. Choose whatever is most convenient for you!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="payment">
+                        <button class="faq-question">
+                            What is your payment structure?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                For projects: 50% downpayment before starting, 50% upon completion before launch. For larger projects: 40% to start, 30% at midpoint, 30% at completion. Monthly maintenance packages are billed at the start of each month.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="payment">
+                        <button class="faq-question">
+                            How much do your services cost?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Basic landing page: ₱3,000-₱8,000. Business website (5-10 pages): ₱10,000-₱25,000. E-commerce site: ₱20,000-₱50,000+. Prices vary based on features and complexity. Contact me for a free quote tailored to your needs!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="payment">
+                        <button class="faq-question">
+                            Do you offer payment plans?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Yes! For projects above ₱15,000, I can arrange flexible payment terms. We can split payments into 3-4 installments. This makes it easier for small businesses and startups to get started.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">O</div>
+                        <h3>Nina.</h3>
+                    </div>
+                    <p>Creating exceptional digital experiences through innovative design and development. Let's build something amazing together.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">tw</a>
+                        <a href="#" class="social-link">@</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#blogs">Blogs</a></li>
+                        <li><a href="#faqs">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>+023-456-789</li>
+                        <li>www.cutegirls.com</li>
+                        <li>cutegirl@gmail.com</li>
+                        <li>Polomolok,</li>
+                        <li>Cotabato</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Get the latest information</h4>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Email address">
+                        <button>→</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                faqItems.forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.faq-answer').classList.remove('active');
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                    item.querySelector('.faq-answer').classList.add('active');
+                }
+            });
+        });
+
+        const faqTabs = document.querySelectorAll('.faq-tab');
+        
+        faqTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const category = tab.dataset.tab;
+                
+                faqTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            
+                faqItems.forEach(item => {
+                    if (item.dataset.category === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').classList.remove('active');
+                });
+            });
+        });
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            faqItems.forEach(item => {
+                if (item.dataset.category !== 'general') {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.textContent = '☰';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
